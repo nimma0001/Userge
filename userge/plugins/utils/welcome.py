@@ -8,12 +8,12 @@
 #
 # All rights reserved.
 
-from userge import userge, Filters, Message, Config, get_collection
+from userge import userge, filters, Message, Config, get_collection
 
 WELCOME_COLLECTION = get_collection("welcome")
 LEFT_COLLECTION = get_collection("left")
-WELCOME_CHATS = Filters.chat([])
-LEFT_CHATS = Filters.chat([])
+WELCOME_CHATS = filters.chat([])
+LEFT_CHATS = filters.chat([])
 CHANNEL = userge.getCLogger(__name__)
 
 
@@ -164,7 +164,7 @@ async def sayleft(msg: Message):
 
 async def raw_set(message: Message, name, collection, chats):
     replied = message.reply_to_message
-    string = message.input_or_reply_str
+    string = message.input_or_reply_raw
     if not (string or (replied and replied.media)):
         out = f"**Wrong Syntax**\ncheck `.help .set{name.lower()}`"
     else:
